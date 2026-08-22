@@ -69,9 +69,9 @@ $tempExtract = Join-Path $downloadFolder "temp_extract"
 New-Item -ItemType Directory -Path $downloadFolder -Force | Out-Null
 New-Item -ItemType Directory -Path $tempExtract -Force | Out-Null
 
-$asset = $releaseJson.assets | Where-Object { $_.name -like "*x64.zip" } | Select-Object -First 1
+$asset = $releaseJson.assets | Where-Object { $_.name -like "*x64_signed.zip" } | Select-Object -First 1
 if (-not $asset) {
-  Write-Error "64-bit zip archive not found."
+  Write-Error "signed 64-bit zip archive not found."
   exit 1
 }
 
