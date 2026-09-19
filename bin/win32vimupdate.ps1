@@ -17,8 +17,8 @@ trap {
 }
 
 # 1. Retrieve the latest release tag from GitHub API
-$releaseJson = Invoke-WebRequest -Uri "https://api.github.com/repos/vim/vim-win32-installer/releases/latest" -UseBasicParsing | ConvertFrom-Json
-$latestTag = $releaseJson.tag_name
+$releaseJson = Invoke-RestMethod -Uri "https://api.github.com/repos/vim/vim-win32-installer/releases/latest"
+$latestTag =$releaseJson.tag_name
 
 function Convert-TagToVersionLong($tag) {
   if ($tag -match '^v(\d+)\.(\d+)\.(\d+)$') {
