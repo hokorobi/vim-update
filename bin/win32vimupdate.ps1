@@ -79,7 +79,8 @@ $zipFilePath = Join-Path $downloadFolder $asset.name
 Invoke-WebRequest -Uri $asset.browser_download_url -OutFile $zipFilePath
 
 Write-Host "Extracting archive to $tempExtract ..."
-Expand-Archive -Path $zipFilePath -DestinationPath $tempExtract -Force
+Add-Type -AssemblyName System.IO.Compression.FileSystem
+[System.IO.Compression.ZipFile]::ExtractToDirectory($zipFilePath,$tempExtract)
 
 $prevDir = $VimRuntime + '_prev'
 if (Test-Path $prevDir) {
