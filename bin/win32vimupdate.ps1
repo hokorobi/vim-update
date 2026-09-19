@@ -102,7 +102,7 @@ Remove-Item -Path $downloadFolder -Recurse -Force
 # 4. Restart the same Vim executable that was previously running
 $restoreSession = ''
 if (Test-Path $SessionFile) {
-  $restoreSEssion = "-S $SessionFile -c `"silent !del $SessionFile 2>nul`" -c `"redraw!`""
+  $restoreSession = "-S $SessionFile -c `"silent !del $SessionFile 2>nul`" -c `"redraw!`""
 }
 Write-Host "Restarting $exeToStart ..."
 Start-Process -FilePath $VimRuntime\$exeToStart $restoreSession
